@@ -461,10 +461,3 @@
   })
 
 }());
-
-/* this is how you get data from firebase. :)
-return database.ref("highScore").once("value");
-}).then(function(snapshot) {
-    var data = snapshot.val()
-	console.log(data);});
-*/
