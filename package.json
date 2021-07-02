@@ -1,0 +1,22 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "asteroids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiddspazz/asteroids.git"
+  },
+  "author": "kiddspazz (https://www.travish.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiddspazz/asteroids/issues"
+  },
+  "homepage": "https://github.com/kiddspazz/asteroids#readme",
+  "dependencies": {
+    "firebase": "^8.7.0"
+  }
+}

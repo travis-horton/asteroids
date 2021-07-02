@@ -1,17 +1,32 @@
-;(function(){
+import firebase from 'firebase/app';
+import 'firebase/database';
+import { rotate } from './rotate';
 
-  let body = document.querySelector("body");
+var firebaseConfig = {
+  apiKey: "AIzaSyCscpQBactVcvFofSuzVDAbOtSwQgK4ykw",
+  authDomain: "asteroids-2fa1b.firebaseapp.com",
+  projectId: "asteroids-2fa1b",
+  databaseURL: "https://asteroids-2fa1b-default-rtdb.firebaseio.com/",
+  storageBucket: "asteroids-2fa1b.appspot.com",
+  messagingSenderId: "690833972626",
+  appId: "1:690833972626:web:a73cbef8b39969fecff54b"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+export const renderAsteroidsInElement = (parentContainerId) => {
+  var database = firebase.database();
+
   let c = document.createElement("canvas");
   let canvas = c.getContext("2d");
-  body.appendChild(c);
-  c.width = 600;
+  c.width = 512;
   c.height = c.width;
+
+  const parentContainer = document.getElementById(parentContainerId);
+  parentContainer.append(c);
 
   function game(canvas) {
     let ctx = canvas;
-    body.appendChild(c);
-    c.width = 600;
-    c.height = c.width;
     c.style = "border: 1pt black solid; background-color: black";
     const AsteroidSize = c.width/14
 
@@ -19,7 +34,13 @@
     let level = 1;
     let entities = [];
     let explosion = [];
-    let highScore = 0;
+    let highScore = '';
+
+    let highScoreRef = database.ref('highscore');
+    highScoreRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      highScore = data;
+    });
 
     function tick() {
       collision(entities);
@@ -29,7 +50,7 @@
       ctx.font = '12px helvetica';
       ctx.fillText("score: "+Math.floor(score), 2, 12);
       ctx.fillText("level: "+level, 2, 36);
-      ctx.fillText("HIGH score: "+highScore, 2, 596);
+      ctx.fillText("HIGH score: "+highScore, 2, c.height-4);
       if (entities[0].lives === 1) {ctx.fillStyle = "rgb(255,0,0)"}
       if (entities[0].lives > 0) {
         ctx.fillText("lives: "+entities[0].lives, 2, 24);
@@ -39,7 +60,7 @@
         ctx.fillText("final score: "+Math.floor(score), c.width/2 - 200, c.height/2 - 70);
         ctx.fillText("level: "+level, c.width/2 - 40, c.height/2 - 120);
         ctx.font = '10px helvetica';
-        ctx.fillText("\"r\" to restart", c.width/2 - 80, c.height/2)
+        ctx.fillText("\"R\" to restart", c.width/2 - 80, c.height/2)
       }
       for (let i = 0; i < entities.length; i++) {
         entities[i].draw();
@@ -207,20 +228,6 @@
         if (array[i] instanceof Asteroid) {
           for (let j = 0; j < array.length; j++) {
 
-            //asteroid && asteroid
-            /*if (array[j] instanceof Asteroid && array[j] !== array[i]) {
-              //if distance between i&j is less than the sum of their radii
-              let radiiSum = array[i].r + array[j].r;
-              let pointMinusPoint = {
-                x: array[i].x - array[j].x,
-                y: array[i].y - array[j].y
-              };
-
-              if (vLength(pointMinusPoint) < radiiSum) {
-                removeThese.push(i);
-              }
-            };*/
-
             //asteroid && bullet
             if (array[j] instanceof Bullet) {
               let pointMinusPoint = {
@@ -258,8 +265,8 @@
       removeThese = removeThese.filter(onlyUnique)
 
       removeThese = removeThese.sort(function compareNumbers(a, b) {
-          return a - b;
-        });
+        return a - b;
+      });
 
       for (let i = 0; i < removeThese.length; i++) {
         let arrayNumber = removeThese[i]-i;
@@ -421,7 +428,9 @@
 
       ifCollision(array, i) {
         score += array[i].r;
-        if (array[i].r > 10) {
+        if (score > highScore) highScore = Math.floor(score);
+        database.ref('/').set({ highscore: highScore });
+        if (array[i].r > 7) {
           for (let j = 0; j < 3; j++) {
             let newR = array[i].r/2;
             let newM = array[i].m*2;
@@ -452,12 +461,9 @@
 
   game(canvas);
 
-  firebase.database.highScore = 400;
-
   window.addEventListener("keypress", function(e) {
     if (e.keyCode === 82) {
       game(canvas);
     }
   })
-
-}());
+};
