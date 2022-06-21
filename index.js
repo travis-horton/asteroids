@@ -22,7 +22,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  canvas.width = 512;
+  canvas.width = 432;
   canvas.height = canvas.width;
   canvas.style = 'border: 1pt black solid; background-color: black';
 
