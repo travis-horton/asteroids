@@ -112,7 +112,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
     function handleCollisions() {
       const entitesThatCollided = new Set(getCollisions());
 
-      entitesThatCollided.forEach(entity => {
+      entitesThatCollided.forEach((entity) => {
         if (entity instanceof Asteroid) {
           score += entity.r;
           if (score > highScore) highScore = Math.floor(score);
@@ -121,7 +121,6 @@ const renderAsteroidsInElement = (parentContainerId) => {
           }
         }
         if (entity instanceof Ship) {
-          console.log(lives);
           lives -= 1;
           if (lives > 0) {
             entities.unshift(new Ship(255, canvas, ctx));
@@ -197,19 +196,19 @@ const renderAsteroidsInElement = (parentContainerId) => {
 
     function isOffTheBoard(entity) {
       return (
-        entity.x > canvas.height ||
-        entity.y > canvas.width ||
-        entity.x < 0 ||
-        entity.y < 0
-      )
+        entity.x > canvas.height
+        || entity.y > canvas.width
+        || entity.x < 0
+        || entity.y < 0
+      );
     }
 
     function removeOffScreenBullets(entity) {
       if (
-        entity instanceof Bullet &&
-        isOffTheBoard(entity)
+        entity instanceof Bullet
+        && isOffTheBoard(entity)
       ) {
-        entities.splice(entities.indexOf(entity), 1)
+        entities.splice(entities.indexOf(entity), 1);
       }
     }
 
@@ -224,9 +223,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
       handleCollisions();
 
       const numberOfAsteroids = entities.filter(
-        (entity) => {
-          return entity instanceof Asteroid
-        }
+        (entity) => entity instanceof Asteroid,
       ).length;
       const numberOfBullets = entities.filter(
         (entity) => entity instanceof Bullet,
@@ -270,7 +267,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
       entities.push(new Asteroid(AsteroidSize, newV, p.x, p.y));
     }
 
-    tick()
+    tick();
   }
 
   game(ctx);

@@ -6,8 +6,8 @@ import { vLength, max2 } from './utils';
 
 export default class Ship {
   constructor(color, canvas, ctx) {
-    this.x = canvas.width / 2,
-    this.y = canvas.height / 2,
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
     this.d = 0;
     this.v = { x: 0, y: 0 };
     this.keyboarder = new Keyboarder();
