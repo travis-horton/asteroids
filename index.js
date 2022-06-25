@@ -3,8 +3,7 @@ import 'firebase/database';
 import Bullet from './bullet';
 import Asteroid from './asteroid';
 import Ship from './ship';
-import { vLength } from './utils';
-import rotate from './rotate';
+import { vLength, rotate } from './utils';
 
 // Initialize Firebase
 firebase.initializeApp({

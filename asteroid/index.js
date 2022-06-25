@@ -1,4 +1,4 @@
-import rotate from './rotate';
+import {rotate} from '../utils';
 
 export default class Asteroid {
   constructor(r, v, x = 0, y = 0) {

@@ -1,8 +1,7 @@
-import rotate from './rotate';
 import Keyboarder from './keyboarder';
 import Spark from './spark';
-import Bullet from './bullet';
-import { vLength, max2 } from './utils';
+import Bullet from '../bullet';
+import { vLength, max2, rotate } from '../utils';
 
 export default class Ship {
   constructor(color, canvas, ctx) {
