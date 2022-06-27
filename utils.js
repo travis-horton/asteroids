@@ -6,21 +6,21 @@ function rotate(point, d) {
   return newPoint;
 }
 
-function vLength(v) {
+function getVectorLength(v) {
   return Math.sqrt((v.x * v.x) + (v.y * v.y));
 }
 
 function max2(v) {
   const newV = { x: 0, y: 0 };
-  if (vLength(v) > 2) {
-    newV.x = v.x / (vLength(v) / 2);
-    newV.y = v.y / (vLength(v) / 2);
+  if (getVectorLength(v) > 2) {
+    newV.x = v.x / (getVectorLength(v) / 2);
+    newV.y = v.y / (getVectorLength(v) / 2);
   }
   return newV;
 }
 
 export {
   rotate,
-  vLength,
+  getVectorLength,
   max2,
 };

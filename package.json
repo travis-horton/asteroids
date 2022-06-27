@@ -4,7 +4,7 @@
   "description": "asteroids",
   "main": "index.js",
   "scripts": {
-    "lint": "yarn eslint -c ./.eslintrc.js",
+    "lint": "yarn eslint -c ./.eslintrc.js ./",
     "test": "yarn jest"
   },
   "repository": {

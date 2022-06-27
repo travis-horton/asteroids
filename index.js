@@ -3,7 +3,7 @@ import 'firebase/database';
 import Bullet from './bullet';
 import Asteroid from './asteroid';
 import Ship from './ship';
-import { vLength, rotate } from './utils';
+import { getVectorLength, rotate } from './utils';
 
 // Initialize Firebase
 firebase.initializeApp({
@@ -62,7 +62,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
             bullet,
           );
 
-          if (vLength(distanceFromCenters) <= asteroid.r) {
+          if (getVectorLength(distanceFromCenters) <= asteroid.r) {
             entitesThatCollided.push(asteroid);
             entitesThatCollided.push(bullet);
           }
@@ -72,7 +72,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
         const ship = entities.find((entity) => entity instanceof Ship);
         const distanceFromCenters = getDistanceFromCenters(asteroid, ship);
 
-        if (vLength(distanceFromCenters) <= 5 + asteroid.r) {
+        if (getVectorLength(distanceFromCenters) <= 5 + asteroid.r) {
           entitesThatCollided.push(ship);
         }
       }

@@ -1,7 +1,7 @@
 import Keyboarder from './keyboarder';
 import Spark from './spark';
 import Bullet from '../bullet';
-import { vLength, max2, rotate } from '../utils';
+import { getVectorLength, max2, rotate } from '../utils';
 
 export default class Ship {
   constructor(color, canvas, ctx) {
@@ -77,7 +77,7 @@ export default class Ship {
       this.v.x += Math.sin(d) / 10;
       this.v.y += Math.cos(d) / -10;
 
-      if (vLength(this.v) > 2) {
+      if (getVectorLength(this.v) > 2) {
         this.v.x = max2(this.v).x;
         this.v.y = max2(this.v).y;
       }
@@ -87,12 +87,12 @@ export default class Ship {
       this.v.x -= Math.sign(this.v.x) * 0.02;
       this.v.y -= Math.sign(this.v.y) * 0.02;
 
-      if (Math.floor(vLength(this.v)) === 0) {
+      if (Math.floor(getVectorLength(this.v)) === 0) {
         this.v.x = 0;
         this.v.y = 0;
       }
 
-      if (vLength(this.v) > 2) {
+      if (getVectorLength(this.v) > 2) {
         this.v.x = max2(this.v).x;
         this.v.y = max2(this.v).y;
       }
