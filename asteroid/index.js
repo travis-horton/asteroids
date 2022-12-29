@@ -1,11 +1,11 @@
 import { rotate } from '../utils';
 
 export default class Asteroid {
-  constructor(r, v, x = 0, y = 0) {
-    this.v = v;
+  constructor(radius, velocity, x = 0, y = 0) {
+    this.velocity = velocity;
     this.x = x;
     this.y = y;
-    this.r = r;
+    this.radius = radius;
     this.d = Math.random() * 360;
     this.s = [{}, {}, {}, {}, {}, {}, {}, {}];
 
@@ -22,15 +22,15 @@ export default class Asteroid {
         r: ((Math.random() - 0.5) * (this.r / 4)) + this.r,
       };
     }
-    this.s[7].r = r;
+    this.s[7].r = this.radius;
   }
 
   draw(ctx) {
     const side = { x: 0, y: 0 };
     side.x = 0;
-    side.y = this.r;
+    side.y = this.radius;
     ctx.beginPath();
-    ctx.moveTo(this.x, this.y + this.r);
+    ctx.moveTo(this.x, this.y + this.radius);
     for (let i = 0; i < this.s.length; i += 1) {
       side.x = rotate({ x: 0, y: this.s[i].r }, this.s[i].d).x;
       side.y = rotate({ x: 0, y: this.s[i].r }, this.s[i].d).y;
@@ -41,13 +41,12 @@ export default class Asteroid {
   }
 
   update({ canvas }) {
+    const {velocity} = this;
     this.d += Math.random() * 5;
-    const vX = this.v.x;
-    const vY = this.v.y;
-    this.x += vX;
+    this.x += velocity.x;
     if (this.x > canvas.width) { this.x = 0; }
     if (this.x < 0) { this.x = canvas.width; }
-    this.y += vY;
+    this.y += velocity.y;
     if (this.y > canvas.height) { this.y = 0; }
     if (this.y < 0) { this.y = canvas.height; }
   }
