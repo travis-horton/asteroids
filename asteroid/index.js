@@ -5,7 +5,7 @@ export default class Asteroid {
     this.velocity = velocity;
     this.x = x;
     this.y = y;
-    this.radius = radius;
+    this.r = radius;
     this.d = Math.random() * 360;
     this.s = [{}, {}, {}, {}, {}, {}, {}, {}];
 
@@ -22,15 +22,15 @@ export default class Asteroid {
         r: ((Math.random() - 0.5) * (this.r / 4)) + this.r,
       };
     }
-    this.s[7].r = this.radius;
+    this.s[7].r = this.r;
   }
 
   draw(ctx) {
     const side = { x: 0, y: 0 };
     side.x = 0;
-    side.y = this.radius;
+    side.y = this.r;
     ctx.beginPath();
-    ctx.moveTo(this.x, this.y + this.radius);
+    ctx.moveTo(this.x, this.y + this.r);
     for (let i = 0; i < this.s.length; i += 1) {
       side.x = rotate({ x: 0, y: this.s[i].r }, this.s[i].d).x;
       side.y = rotate({ x: 0, y: this.s[i].r }, this.s[i].d).y;
