@@ -41,7 +41,7 @@ export default class Asteroid {
   }
 
   update({ canvas }) {
-    const {velocity} = this;
+    const { velocity } = this;
     this.d += Math.random() * 5;
     this.x += velocity.x;
     if (this.x > canvas.width) { this.x = 0; }
