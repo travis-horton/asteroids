@@ -1,23 +1,23 @@
-import firebase from 'firebase/app';
-import 'firebase/database';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import Bullet from './bullet';
 import Asteroid from './asteroid';
 import Ship from './ship';
 import { getVectorLength, rotate } from './utils';
 
 // Initialize Firebase
-firebase.initializeApp({
-  apiKey: 'AIzaSyCscpQBactVcvFofSuzVDAbOtSwQgK4ykw',
-  authDomain: 'asteroids-2fa1b.firebaseapp.com',
-  projectId: 'asteroids-2fa1b',
-  databaseURL: 'https://asteroids-2fa1b-default-rtdb.firebaseio.com/',
-  storageBucket: 'asteroids-2fa1b.appspot.com',
-  messagingSenderId: '690833972626',
-  appId: '1:690833972626:web:a73cbef8b39969fecff54b',
+const app = initializeApp({
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 });
 
 const renderAsteroidsInElement = (parentContainerId) => {
-  const database = firebase.database();
+  const database = getDatabase(app);
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -28,7 +28,13 @@ const renderAsteroidsInElement = (parentContainerId) => {
   const parentContainer = document.getElementById(parentContainerId);
   parentContainer.append(canvas);
 
+  let rafId = null;
+
   function game() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
     const AsteroidSize = canvas.width / 14;
     let level = 1;
     let lives = 3;
@@ -36,8 +42,8 @@ const renderAsteroidsInElement = (parentContainerId) => {
     let highScore = '';
     const entities = [];
 
-    const highScoreRef = database.ref('highscore');
-    highScoreRef.on('value', (snapshot) => {
+    const highScoreRef = ref(database, 'highscore');
+    onValue(highScoreRef, (snapshot) => {
       highScore = snapshot.val();
     });
 
@@ -256,7 +262,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
           entities.push(new Asteroid(AsteroidSize, newV, p.x, p.y));
         }
       }
-      window.requestAnimationFrame(tick);
+      rafId = window.requestAnimationFrame(tick);
     }
 
     entities.push(new Ship(255, canvas, ctx));
@@ -272,7 +278,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
   game(ctx);
 
   window.addEventListener('keypress', (e) => {
-    if (e.keyCode === 82) {
+    if (e.key.toLowerCase() === 'r') {
       game(ctx);
     }
   });
