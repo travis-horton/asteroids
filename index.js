@@ -1,24 +1,9 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue } from 'firebase/database';
 import Bullet from './bullet';
 import Asteroid from './asteroid';
 import Ship from './ship';
 import { getVectorLength, rotate } from './utils';
 
-// Initialize Firebase
-const app = initializeApp({
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-});
-
 const renderAsteroidsInElement = (parentContainerId) => {
-  const database = getDatabase(app);
-
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = 432;
@@ -39,13 +24,8 @@ const renderAsteroidsInElement = (parentContainerId) => {
     let level = 1;
     let lives = 3;
     let score = 0;
-    let highScore = '';
+    let highScore = Number(localStorage.getItem('travish.asteroids.highScore'));
     const entities = [];
-
-    const highScoreRef = ref(database, 'highscore');
-    onValue(highScoreRef, (snapshot) => {
-      highScore = snapshot.val();
-    });
 
     function getDistanceFromCenters(a, b) {
       return {
@@ -114,13 +94,18 @@ const renderAsteroidsInElement = (parentContainerId) => {
       }
     }
 
+    function setHighScore(n) {
+      localStorage.setItem('travish.asteroids.highScore', n);
+      highScore = n;
+    }
+
     function handleCollisions() {
       const entitesThatCollided = new Set(getCollisions());
 
       entitesThatCollided.forEach((entity) => {
         if (entity instanceof Asteroid) {
           score += entity.r;
-          if (score > highScore) highScore = Math.floor(score);
+          if (score > highScore) setHighScore(Math.floor(score));
           if (asteroidCanBeSplit(entity)) {
             splitAsteroid(entity);
           }
