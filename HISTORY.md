@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## September 2026
 
+**asteroids #7: Bump brace-expansion from 1.1.11 to 1.1.21** · [PR #7](https://github.com/travis-horton/asteroids/pull/7) · merged 26.0919.1418 · v2.1.3
+- Behind the scenes: an automatic dependency update — "Bump brace-expansion from 1.1.11 to 1.1.21".
+
 **asteroids #9: a stray install log removed** · [PR #9](https://github.com/travis-horton/asteroids/pull/9) · merged 26.0919.1418 · v2.1.2
 - Fixed: a leftover log from a failed package install (`yarn-error.log`) was part of the public project, including a local folder path. It's gone, and the ignore list already keeps new ones out.
 
