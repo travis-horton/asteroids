@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## September 2026
 
+**asteroids #8: Bump browserslist from 4.21.0 to 4.29.0** · [PR #8](https://github.com/travis-horton/asteroids/pull/8) · merged 26.0919.1420 · v2.1.5
+- Behind the scenes: an automatic dependency update — "Bump browserslist from 4.21.0 to 4.29.0".
+
 **asteroids #10: Bump @babel/core from 7.18.5 to 7.29.6** · [PR #10](https://github.com/travis-horton/asteroids/pull/10) · merged 26.0919.1420 · v2.1.4
 - Behind the scenes: an automatic dependency update — "Bump @babel/core from 7.18.5 to 7.29.6".
 
