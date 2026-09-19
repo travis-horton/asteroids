@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## September 2026
 
+**asteroids #10: Bump @babel/core from 7.18.5 to 7.29.6** · [PR #10](https://github.com/travis-horton/asteroids/pull/10) · merged 26.0919.1420 · v2.1.4
+- Behind the scenes: an automatic dependency update — "Bump @babel/core from 7.18.5 to 7.29.6".
+
 **asteroids #7: Bump brace-expansion from 1.1.11 to 1.1.21** · [PR #7](https://github.com/travis-horton/asteroids/pull/7) · merged 26.0919.1418 · v2.1.3
 - Behind the scenes: an automatic dependency update — "Bump brace-expansion from 1.1.11 to 1.1.21".
 
