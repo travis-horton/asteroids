@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## September 2026
 
+**asteroids #9: a stray install log removed** · [PR #9](https://github.com/travis-horton/asteroids/pull/9) · merged 26.0919.1418 · v2.1.2
+- Fixed: a leftover log from a failed package install (`yarn-error.log`) was part of the public project, including a local folder path. It's gone, and the ignore list already keeps new ones out.
+
 **asteroids #6: A plain-language history of the game** · [PR #6](https://github.com/travis-horton/asteroids/pull/6) · merged 26.0919.1336 · v2.1.1
 - **[The history, written](https://github.com/travis-horton/asteroids/commit/5e7b727)** · merged 26.0919.1336
   Behind the scenes: a new page, HISTORY.md, tells the whole story of the game in plain words, from the first version on 18.0819 to today, with a version number for each step (the game is at version 2.1.0).
