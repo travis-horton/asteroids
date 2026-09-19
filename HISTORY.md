@@ -12,6 +12,12 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## September 2026
 
+**asteroids #6: A plain-language history of the game** · [PR #6](https://github.com/travis-horton/asteroids/pull/6) · merged 26.0919.1336 · v2.1.1
+- **[The history, written](https://github.com/travis-horton/asteroids/commit/5e7b727)** · merged 26.0919.1336
+  Behind the scenes: a new page, HISTORY.md, tells the whole story of the game in plain words, from the first version on 18.0819 to today, with a version number for each step (the game is at version 2.1.0).
+- **[Kept up to date by itself](https://github.com/travis-horton/asteroids/commit/8967457)** · merged 26.0919.1336
+  Behind the scenes: every future change to the game must describe itself in plain words, and when it is accepted that description is added to the top of HISTORY.md with its version number.
+
 **asteroids #5: the high score lives in your own browser** · [PR #5](https://github.com/travis-horton/asteroids/pull/5) · merged 26.0910.2034 · v2.1.0
 - Fixed: the game on travish.com had stopped working, because it tried to reach the old online high-score database first, and the website no longer had the settings to connect to it. The game now starts without it.
   New: your best score is kept in your own browser, so it is there the next time you play on the same computer, and the "HIGH score" line changes the moment you beat it. It replaces the shared online high score, and the game no longer uses the online database at all.
