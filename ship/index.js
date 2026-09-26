@@ -4,17 +4,24 @@ import Bullet from '../bullet';
 import { getVectorLength, max2, rotate } from '../utils';
 
 export default class Ship {
-  constructor(color, canvas, ctx) {
+  // `keyboarder` is optional: the game passes in one shared keyboard listener
+  // so it can switch it off when the game is closed. Without one, the ship
+  // makes and starts its own.
+  constructor(color, canvas, ctx, keyboarder) {
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
     this.d = 0;
     this.v = { x: 0, y: 0 };
-    this.keyboarder = new Keyboarder();
     this.color = color;
     this.ctx = ctx;
     this.explosion = [];
 
-    this.keyboarder.listenForKeyState();
+    if (keyboarder) {
+      this.keyboarder = keyboarder;
+    } else {
+      this.keyboarder = new Keyboarder();
+      this.keyboarder.listenForKeyState();
+    }
   }
 
   drawExplosion() {
