@@ -1,6 +1,7 @@
 import Bullet from './bullet';
 import Asteroid from './asteroid';
 import Ship from './ship';
+import Keyboarder from './ship/keyboarder';
 import { getVectorLength, rotate } from './utils';
 
 const renderAsteroidsInElement = (parentContainerId) => {
@@ -14,6 +15,11 @@ const renderAsteroidsInElement = (parentContainerId) => {
   parentContainer.append(canvas);
 
   let rafId = null;
+
+  // One keyboard listener for the whole game, shared by every ship, so it
+  // can be switched off when the game is closed.
+  const keyboarder = new Keyboarder();
+  keyboarder.listenForKeyState();
 
   function game() {
     if (rafId !== null) {
@@ -113,7 +119,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
         if (entity instanceof Ship) {
           lives -= 1;
           if (lives > 0) {
-            entities.unshift(new Ship(255, canvas, ctx));
+            entities.unshift(new Ship(255, canvas, ctx, keyboarder));
           }
           entity.handleCollision();
         }
@@ -250,7 +256,7 @@ const renderAsteroidsInElement = (parentContainerId) => {
       rafId = window.requestAnimationFrame(tick);
     }
 
-    entities.push(new Ship(255, canvas, ctx));
+    entities.push(new Ship(255, canvas, ctx, keyboarder));
     for (let i = 0; i < level; i += 1) {
       const p = new Placement();
       const newV = { x: Math.random() * 0.5, y: Math.random() * 0.5 };
@@ -262,11 +268,25 @@ const renderAsteroidsInElement = (parentContainerId) => {
 
   game(ctx);
 
-  window.addEventListener('keypress', (e) => {
+  function restartOnR(e) {
     if (e.key.toLowerCase() === 'r') {
       game(ctx);
     }
-  });
+  }
+  window.addEventListener('keypress', restartOnR);
+
+  // Stops the game and takes it off the page: no more drawing, and the arrow
+  // keys, space bar and "R" go back to doing nothing. Call it when the page
+  // showing the game closes.
+  return function stop() {
+    if (rafId !== null) {
+      window.cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    window.removeEventListener('keypress', restartOnR);
+    keyboarder.stopListening();
+    canvas.remove();
+  };
 };
 
 export default renderAsteroidsInElement;
