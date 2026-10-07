@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## October 2026
 
+**asteroids #14: Bump flatted from 3.2.5 to 3.4.4** · [PR #14](https://github.com/travis-horton/asteroids/pull/14) · merged 26.1007.1205 · v2.1.9
+- Behind the scenes: an automatic dependency update — "Bump flatted from 3.2.5 to 3.4.4".
+
 **asteroids #12: Bump picomatch from 2.3.1 to 2.3.2** · [PR #12](https://github.com/travis-horton/asteroids/pull/12) · merged 26.1007.1049 · v2.1.8
 - Behind the scenes: an automatic dependency update — "Bump picomatch from 2.3.1 to 2.3.2".
 
