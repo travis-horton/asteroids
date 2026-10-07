@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## October 2026
 
+**asteroids #11: Bump @babel/plugin-transform-modules-systemjs from 7.18.5 to 7.29.8** · [PR #11](https://github.com/travis-horton/asteroids/pull/11) · merged 26.1007.1048 · v2.1.7
+- Behind the scenes: an automatic dependency update — "Bump @babel/plugin-transform-modules-systemjs from 7.18.5 to 7.29.8".
+
 **asteroids #13: the game stops when you leave its page** · [PR #13](https://github.com/travis-horton/asteroids/pull/13) · merged 26.1007.1039 · v2.1.6
 - Fixed: after you left the Asteroids page on travish.com, the game kept playing out of sight on every screen refresh, each visit added another hidden game, and pressing R on any other page restarted them. The game now hands the website a way to stop it, which ends the drawing, removes the game area, and stops listening to the arrow keys, space bar and R. (The website starts using it in its own change.)
 
