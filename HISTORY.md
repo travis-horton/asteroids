@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## October 2026
 
+**asteroids #12: Bump picomatch from 2.3.1 to 2.3.2** · [PR #12](https://github.com/travis-horton/asteroids/pull/12) · merged 26.1007.1049 · v2.1.8
+- Behind the scenes: an automatic dependency update — "Bump picomatch from 2.3.1 to 2.3.2".
+
 **asteroids #11: Bump @babel/plugin-transform-modules-systemjs from 7.18.5 to 7.29.8** · [PR #11](https://github.com/travis-horton/asteroids/pull/11) · merged 26.1007.1048 · v2.1.7
 - Behind the scenes: an automatic dependency update — "Bump @babel/plugin-transform-modules-systemjs from 7.18.5 to 7.29.8".
 
