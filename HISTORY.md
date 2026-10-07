@@ -10,6 +10,11 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 *Written from the git history on 26.0918 and checked against the code of each day. From then on, each pull request carries its own entry, and it is added here automatically when the pull request merges.*
 
+## October 2026
+
+**asteroids #13: the game stops when you leave its page** · [PR #13](https://github.com/travis-horton/asteroids/pull/13) · merged 26.1007.1039 · v2.1.6
+- Fixed: after you left the Asteroids page on travish.com, the game kept playing out of sight on every screen refresh, each visit added another hidden game, and pressing R on any other page restarted them. The game now hands the website a way to stop it, which ends the drawing, removes the game area, and stops listening to the arrow keys, space bar and R. (The website starts using it in its own change.)
+
 ## September 2026
 
 **asteroids #8: Bump browserslist from 4.21.0 to 4.29.0** · [PR #8](https://github.com/travis-horton/asteroids/pull/8) · merged 26.0919.1420 · v2.1.5
