@@ -1,6 +1,6 @@
 {
   "name": "y",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "asteroids",
   "main": "index.js",
   "scripts": {

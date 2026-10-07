@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## October 2026
 
+**asteroids #15: Bump minimatch from 3.1.2 to 3.1.5** · [PR #15](https://github.com/travis-horton/asteroids/pull/15) · merged 26.1007.1205 · v2.1.10
+- Behind the scenes: an automatic dependency update — "Bump minimatch from 3.1.2 to 3.1.5".
+
 **asteroids #14: Bump flatted from 3.2.5 to 3.4.4** · [PR #14](https://github.com/travis-horton/asteroids/pull/14) · merged 26.1007.1205 · v2.1.9
 - Behind the scenes: an automatic dependency update — "Bump flatted from 3.2.5 to 3.4.4".
 
