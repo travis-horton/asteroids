@@ -12,6 +12,9 @@ This is the whole history of the Asteroids game, newest first, written for someo
 
 ## October 2026
 
+**asteroids #17: the change log keeper, refreshed (current checkout step)** · [PR #17](https://github.com/travis-horton/asteroids/pull/17) · merged 26.1017.1357 · v2.1.12
+- Behind the scenes: the automatic job that writes this change log now uses version 7 of GitHub's checkout step instead of version 4, and passes what it saves to GitHub as a list rather than one long line of text. The entries it writes, their version numbers and their tags are the same as before.
+
 **asteroids #16: the change log catches up on entries it missed** · [PR #16](https://github.com/travis-horton/asteroids/pull/16) · merged 26.1015.0727 · v2.1.11
 - Behind the scenes: the robot that writes this file after each change now also writes in any earlier finished change it missed, oldest first, with a "recorded late" note when it is more than an hour late. If GitHub won't answer one of its lookups, it skips only that one, records the newest change anyway, and fills the gap on a later run.
 
